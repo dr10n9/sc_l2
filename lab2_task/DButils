@@ -1,0 +1,39 @@
+import pymongo
+from pymongo import MongoClient
+import datetime
+
+try:
+    connection = MongoClient('localhost', 27017)
+    print("Connected successfully!")
+except:
+    print("Could not connect to MongoDB")
+
+#database
+db = connection.messages_db
+
+#collection: messages
+collection = db.messages
+
+#just for example
+emp_rec1 = {
+        "name":"author",
+        # "date": date(2018, 12, 5),
+        "date": datetime.datetime.strptime("2017-10-13T10:53:53.000Z", "%Y-%m-%dT%H:%M:%S.000Z"), # for ISO date
+        "text":"text_about_transport",
+        "topic_id": "LAZ"
+        }
+
+
+def FillDBWithMessages():
+
+    # rec_id1 = collection.insert_one(emp_rec1)
+    # print("Data inserted with record id", rec_id1)
+
+FillDBWithMessages()
+
+def printMessages:
+    cursor = collection.find()
+    for record in cursor:
+        print(record)
+
+#collection.drop()
